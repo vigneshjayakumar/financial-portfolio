@@ -1,0 +1,88 @@
+<div>
+  <button class="back-btn" (click)="onRouteBack()">
+    <img class="back-img" src="assets/back.png" alt="Back" /><span>Back</span>
+  </button>
+</div>
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+  @if(!isCurrentTrends){
+  <label for="assetType">Asset Type</label>
+  <select
+    name="assetType"
+    id="assetType"
+    formControlName="assetType"
+    (change)="onAssetTypeChange($event)"
+  >
+    @for (asset of assetAllocationArr; track $index) {
+    <option [value]="asset">{{ asset }}</option>
+    }
+  </select>
+  <label for="assetName">Asset</label>
+  <select name="assetName" id="assetName" formControlName="assetDropDown">
+    @for (asset of assetNamesArr; track $index) {
+    <option [value]="asset.name">{{ asset.name }}</option>
+    }
+  </select>
+  }@else {
+  <label for="currentTrends">Current Trending Stock</label>
+  <select
+    name="currentTrends"
+    id="currentTrends"
+    formControlName="currentTrends"
+  >
+    @for (current of marketTrendsArr; track $index) {
+    <option [value]="current">{{ current }}</option>
+    }
+  </select>
+  }
+  <label for="quantity">Quantity</label>
+  <input type="number" id="quantity" formControlName="quantity" />
+  <label for="purchasePrice">Purchase Price</label>
+  <input type="number" id="purchasePrice" formControlName="purchasePrice" />
+  <label for="PurchaseDate">Date</label>
+  <input type="date" id="PurchaseDate" formControlName="date" />
+  <button type="submit">Submit</button>
+</form>
+@if(errorMsg){
+<div class="error-message">
+  {{ errorMsg }}
+</div>
+} @if (onPopSubmit) {
+<div class="popup-overlay">
+  <div class="popup-content">
+    <h2>Confirm Purchase</h2>
+    @if(!isCurrentTrends){
+
+    <div class="popup-row">
+      <label>Asset Type:</label>
+      <span>{{ userForm.get("assetType")?.value | makeCaps }}</span>
+      <div>
+        <label>Asset Name:</label>
+        <span>{{ userForm.get("assetDropDown")?.value | makeCaps }}</span>
+      </div>
+    </div>
+    }@else{
+    <div class="popup-row">
+      <label>Stock:</label>
+      <span>{{ userForm.get("currentTrends")?.value | makeCaps }}</span>
+    </div>
+    }
+    <div class="popup-row">
+      <label>Quantity:</label>
+      <span>{{ userForm.get("quantity")?.value }}</span>
+    </div>
+    <div class="popup-row">
+      <label>Purchase Price:</label>
+      <span>{{ userForm.get("purchasePrice")?.value }}</span>
+    </div>
+    <div class="popup-row">
+      <label>Date:</label>
+      <span>{{ userForm.get("date")?.value }}</span>
+    </div>
+
+    <div class="popup-actions">
+      <button class="confirm-btn" (click)="confirmPurchase()">Confirm</button>
+      <button class="cancel-btn" (click)="cancelPopup()">Cancel</button>
+    </div>
+  </div>
+</div>
+}

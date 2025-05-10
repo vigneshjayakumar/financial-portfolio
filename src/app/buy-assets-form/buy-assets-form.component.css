@@ -1,0 +1,154 @@
+form {
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fafafa;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+form label {
+    display: block;
+    margin-top: 15px;
+    font-weight: 600;
+    color: #333;
+}
+.back-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    color: #333;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+  }
+  
+  .back-btn:hover {
+    background-color: #e0e0e0;
+    border-color: #999;
+  }
+  
+  .back-img {
+    width: 16px;
+    height: 16px;
+    object-fit: contain;
+  }
+
+form input,
+form select {
+    width: 100%;
+    padding: 8px 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+form input:focus,
+form select:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+form button[type="submit"] {
+    margin-top: 20px;
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    font-size: 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+form button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+.error-message {
+    color: red;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+
+.popup-overlay {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0 0 0 / 0.5);
+    z-index: 1000;
+    font-family: 'Poppins', sans-serif;
+}
+
+.popup-content {
+    background: #ffffff;
+    padding: 25px 30px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 420px;
+    box-shadow: 0 4px 12px rgba(0 0 0 / 0.25);
+}
+
+.popup-row {
+    margin-bottom: 12px;
+}
+
+.popup-row label {
+    font-weight: 600;
+    min-width: 130px;
+    display: inline-block;
+    color: #333;
+}
+
+.popup-row span {
+    color: #000;
+}
+
+.popup-actions {
+    display: flex;
+    gap: 4%;
+    margin-top: 24px;
+}
+
+.confirm-btn,
+.cancel-btn {
+    flex: 1;
+    padding: 10px 0;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.confirm-btn {
+    background: #1e88e5;
+    color: #fff;
+}
+
+.confirm-btn:hover {
+    background: #1565c0;
+}
+
+.cancel-btn {
+    background: #ff7043;
+    color: #fff;
+}
+
+.cancel-btn:hover {
+    background: #f4511e;
+}

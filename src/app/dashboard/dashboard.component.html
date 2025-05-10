@@ -1,0 +1,125 @@
+<select name="asset-allocation" id="asset" [formControl]="assetForm">
+  @for (asset of assetAllocationArr; track $index) {
+  <option [value]="asset">{{ asset | makeCaps }}</option>
+  }
+</select>
+<select name="market-trends" id="market" [formControl]="marketTrendsForm">
+  @for (trends of marketTrendsArr; track $index) {
+  <option [value]="trends">{{ trends }}</option>
+  }
+</select>
+
+<button (click)="onRouteToBuy()">Buy {{ " " + assetType }}</button>
+
+@if(asset==='equaties' && isShowMarketTrend===false){
+<div class="table-desktop">
+  <table class="responsive-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Current Price</th>
+        <th>Dividend Yield %</th>
+        <th>Market Capitalization</th>
+        <th>Net Profit (Last Quarter)</th>
+        <th>Price to Earnings</th>
+        <th>Quarterly Profit Growth</th>
+        <th>Return on Capital</th>
+        <th>Sales (Latest Quarter)</th>
+        <th>YoY Sales Growth</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for(data of equityinfoData;track $index){
+      <tr>
+        <td>{{ data.name }}</td>
+        <td>{{ data.currentPrice }}</td>
+        <td>{{ data.dividentYldInPercent }}</td>
+        <td>{{ data.marketCaptializ }}</td>
+        <td>{{ data.netProfitlastQuatar }}</td>
+        <td>{{ data.priceToEarn }}</td>
+        <td>{{ data.qtrProfitGrowth }}</td>
+        <td>{{ data.returnOfCap }}</td>
+        <td>{{ data.salesLastestQuater }}</td>
+        <td>{{ data.yoySalesGrowth }}</td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>
+<div class="table-mobile">
+  @for(data of equityinfoData;track $index){
+
+  <div class="data-card">
+    <div><strong>Name:</strong> {{ data.name }}</div>
+    <div><strong>Current Price:</strong> {{ data.currentPrice }}</div>
+    <div>
+      <strong>Dividend Yield %:</strong> {{ data.dividentYldInPercent }}
+    </div>
+    <div><strong>Market Cap:</strong> {{ data.marketCaptializ }}</div>
+    <div><strong>Net Profit (Q):</strong> {{ data.netProfitlastQuatar }}</div>
+    <div>...</div>
+  </div>
+  }
+</div>
+} @else if(isShowMarketTrend===false){
+
+<div class="commodity-table-desktop">
+  <table class="commodity-responsive-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Change</th>
+        <th>Avg Price</th>
+        <th>Last Price</th>
+        <th>Open Interest</th>
+        <th>Volume (Lots)</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for(data of commodityinfoData;track $index){
+      <tr>
+        <td>{{ data.name }}</td>
+        <td>{{ data.Change }}</td>
+        <td>{{ data.avgPrice }}</td>
+        <td>{{ data.lastPrice }}</td>
+        <td>{{ data.openInt }}</td>
+        <td>{{ data.volumeInlots }}</td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>
+
+<!-- Mobile Card View -->
+<div class="commodity-table-mobile">
+  @for(data of commodityinfoData;track $index){
+  <div class="commodity-card">
+    <div><strong>Name:</strong> {{ data.name }}</div>
+    <div><strong>Change:</strong> {{ data.Change }}</div>
+    <div><strong>Avg Price:</strong> {{ data.avgPrice }}</div>
+    <div><strong>Last Price:</strong> {{ data.lastPrice }}</div>
+    <div><strong>Open Interest:</strong> {{ data.openInt }}</div>
+    <div><strong>Volume (Lots):</strong> {{ data.volumeInlots }}</div>
+  </div>
+  }
+</div>
+} @if(isShowMarketTrend===true){
+<div class="trend-card">
+  <div class="trend-row">
+    <label>Stock:</label>
+    <span>{{ marketTrends.name }}</span>
+  </div>
+  <div class="trend-row">
+    <label>Market Price:</label>
+    <span>{{ marketTrends.value.markerPrice }}</span>
+  </div>
+  <div class="trend-row">
+    <label>52W Low:</label>
+    <span>{{ marketTrends.value.WLow }}</span>
+  </div>
+  <div class="trend-row">
+    <label>52W High:</label>
+    <span>{{ marketTrends.value.WHigh }}</span>
+  </div>
+</div>
+}
